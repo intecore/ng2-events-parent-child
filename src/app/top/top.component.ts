@@ -11,7 +11,7 @@ export class TopComponent implements OnInit {
   @Output()
   searchClick = new EventEmitter<any>();
   @Output()
-  errorGenerated = new EventEmitter<any>();
+  error = new EventEmitter<any>();
 
   constructor(private customerService: CustomerService) {
   }
@@ -26,7 +26,7 @@ export class TopComponent implements OnInit {
         'Please fill out all required fields'
       ];
       console.log('TopComponent: Has error, emitting: ', errorList);
-      this.errorGenerated.emit(errorList);
+      this.error.emit(errorList);
     }
     else {
       let searchCriteria = {

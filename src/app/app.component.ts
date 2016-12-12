@@ -10,19 +10,19 @@ export class AppComponent {
   detailsSummary: any;
   errorList: string[];
 
-  onSearchClick(data: any) {
+  onSearchClickEvent(data: any) {
     console.log('AppComponent: Received search criteria: ', data);
     this.errorList = undefined;
     this.searchCriteria = data;
     this.detailsSummary = undefined;
   }
 
-  onErrorGenerated(data: any) {
+  onErrorEvent(data: any) {
     console.log('AppComponent: Received error list: ', data);
     this.errorList = data;
   }
 
-  onDetailsClick(data: any) {
+  onDetailsClickEvent(data: any) {
     console.log('AppComponent: Received details summary: ', data);
     this.detailsSummary = data;
   }

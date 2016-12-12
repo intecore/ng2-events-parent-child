@@ -9,8 +9,8 @@
   </div>
 </div>
 
-<app-top (searchClick)="onSearchClick($event)" (errorGenerated)="onErrorGenerated($event)"></app-top>
+<app-top (searchClick)="onSearchClickEvent($event)" (error)="onErrorEvent($event)"></app-top>
 <hr>
-<app-middle [searchCriteria]="searchCriteria" (detailsClick)="onDetailsClick($event)"></app-middle>
+<app-middle [searchCriteria]="searchCriteria" (detailsClick)="onDetailsClickEvent($event)"></app-middle>
 <hr>
 <app-bottom [detailsSummary]="detailsSummary"></app-bottom>
