@@ -10,6 +10,8 @@ import { CustomerService } from '../customer.service';
 export class TopComponent implements OnInit {
   @Output()
   searchClick = new EventEmitter<any>();
+  @Output()
+  errorGenerated = new EventEmitter<any>();
 
   constructor(private customerService: CustomerService) {
   }
@@ -18,11 +20,20 @@ export class TopComponent implements OnInit {
   }
 
   submitSearch(searchString: string) {
-    let dataToEmit = {
-      searchString: searchString
-    };
-    console.log('TopComponent: Emitting: ', dataToEmit);
-    this.searchClick.emit(dataToEmit);
+    if (searchString.trim().length === 0) {
+      let errorList = [
+        'You must specify something to search for',
+        'Please fill out all required fields'
+      ];
+      console.log('TopComponent: Has error, emitting: ', errorList);
+      this.errorGenerated.emit(errorList);
+    }
+    else {
+      let searchCriteria = {
+        searchString: searchString
+      };
+      console.log('TopComponent: Emitting: ', searchCriteria);
+      this.searchClick.emit(searchCriteria);
+    }
   }
-
 }
