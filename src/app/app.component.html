@@ -1,0 +1,13 @@
+<h3>
+  Demonstrates how events are pass from child components to parent components, then down to other child components.
+</h3>
+<hr>
+<div class="alert alert-danger" *ngIf="errorMsg != ''">
+  <strong>Error:</strong> {{errorMsg}}
+</div>
+
+<app-top (searchClick)="onSearchClick($event)"></app-top>
+<hr>
+<app-middle [searchCriteria]="searchCriteria" (detailsClick)="onDetailsClick($event)"></app-middle>
+<hr>
+<app-bottom [detailsSummary]="detailsSummary"></app-bottom>
