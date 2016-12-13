@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { SearchStatus } from './search-status.model';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +9,7 @@ export class AppComponent {
   searchCriteria: any;
   detailsSummary: any;
   errorList: string[];
-  searchStatus: SearchStatus = {
+  searchStatus: any = {
     isSearching: false
   };
 

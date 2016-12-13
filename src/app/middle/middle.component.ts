@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { CustomerService } from '../customer.service';
-import { SearchStatus } from '../search-status.model';
 
 @Component({
   selector: 'app-middle',
@@ -16,7 +15,7 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   @Output()
   detailsClick = new EventEmitter<any>();
   @Output()
-  searchStatus = new EventEmitter<SearchStatus>();
+  searchStatus = new EventEmitter<any>();
 
   constructor(private customerService: CustomerService) {
   }
