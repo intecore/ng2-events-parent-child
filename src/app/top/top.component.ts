@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
+import { SearchStatus } from '../search-status.model';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class TopComponent implements OnInit {
   searchClick = new EventEmitter<any>();
   @Output()
   error = new EventEmitter<any>();
+  @Input()
+  searchStatus: SearchStatus;
 
   constructor(private customerService: CustomerService) {
   }

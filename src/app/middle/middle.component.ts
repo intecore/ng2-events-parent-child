@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input, Output, SimpleChange, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { CustomerService } from '../customer.service';
+import { SearchStatus } from '../search-status.model';
 
 @Component({
   selector: 'app-middle',
@@ -14,6 +15,8 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   searchCriteria: any;
   @Output()
   detailsClick = new EventEmitter<any>();
+  @Output()
+  searchStatus = new EventEmitter<SearchStatus>();
 
   constructor(private customerService: CustomerService) {
   }
@@ -39,7 +42,9 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   searchCustomers(searchCriteria: any) {
+    console.log('MiddleComponent: Emitting: ', true);
     this.isLoading = true;
+    this.searchStatus.emit({isSearching: true});
     this.searchResults = undefined;
 
     console.log('MiddleComponent: Searching...');
@@ -55,6 +60,7 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
       () => {
         console.log('MiddleComponent: Searching of customers completed');
         this.isLoading = false;
+        this.searchStatus.emit({isSearching: false});
       }
     );
   }

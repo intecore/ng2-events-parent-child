@@ -3,5 +3,5 @@
     <label for="searchInput">Search Customers</label>
     <input #searchString type="text" class="form-control" id="searchInput" placeholder="Enter Search Criteria">
   </div>
-  <button type="submit" class="btn btn-primary" (click)="submitSearch(searchString.value)">Search</button>
+  <button type="submit" class="btn btn-primary" (click)="submitSearch(searchString.value)" [disabled]="searchStatus.isSearching">Search</button>
 </form>
