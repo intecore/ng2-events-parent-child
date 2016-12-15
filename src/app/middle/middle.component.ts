@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 import { CustomerService } from '../customer.service';
+import { SearchStatusEvent, DetailsSummaryEvent } from '../events';
+import { SearchCriteria, SearchStatus, DetailsSummary } from '../models';
 
 @Component({
   selector: 'app-middle',
@@ -9,13 +11,13 @@ import { CustomerService } from '../customer.service';
 })
 export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   isLoading: boolean = false;
-  searchResults: any[];
+  searchResults: DetailsSummary[];
   @Input()
-  searchCriteria: any;
+  searchCriteria: SearchCriteria;
   @Output()
-  detailsClick = new EventEmitter<any>();
+  detailsClick = new EventEmitter<DetailsSummaryEvent>();
   @Output()
-  searchStatus = new EventEmitter<any>();
+  searchStatus = new EventEmitter<SearchStatusEvent>();
 
   constructor(private customerService: CustomerService) {
   }
@@ -40,10 +42,11 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  searchCustomers(searchCriteria: any) {
-    console.log('MiddleComponent: Emitting: ', true);
+  searchCustomers(searchCriteria: SearchCriteria) {
+    let searchStatusEvent = new SearchStatusEvent(new SearchStatus(true));
+    console.log('MiddleComponent: Emitting: ', searchStatusEvent);
     this.isLoading = true;
-    this.searchStatus.emit({isSearching: true});
+    this.searchStatus.emit(searchStatusEvent);
     this.searchResults = undefined;
 
     console.log('MiddleComponent: Searching...');
@@ -59,13 +62,14 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
       () => {
         console.log('MiddleComponent: Searching of customers completed');
         this.isLoading = false;
-        this.searchStatus.emit({isSearching: false});
+        this.searchStatus.emit(new SearchStatusEvent(new SearchStatus(false)));
       }
     );
   }
 
-  onClickDetails(detailSummary: any) {
-    console.log('MiddleComponent: Emitting: ', detailSummary);
-    this.detailsClick.emit(detailSummary);
+  onClickDetails(detailSummary: DetailsSummary) {
+    let detailsSummaryEvent = new DetailsSummaryEvent(detailSummary);
+    console.log('MiddleComponent: Emitting: ', detailsSummaryEvent);
+    this.detailsClick.emit(detailsSummaryEvent);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 
 import { CustomerService } from '../customer.service';
+import { DetailsSummary } from '../models';
 
 @Component({
   selector: 'app-bottom',
@@ -11,7 +12,7 @@ export class BottomComponent implements OnInit, OnDestroy, OnChanges {
   isLoading: boolean = false;
   fullDetail: any;
   @Input()
-  detailsSummary: any;
+  detailsSummary: DetailsSummary;
 
   constructor(private customerService: CustomerService) {
   }

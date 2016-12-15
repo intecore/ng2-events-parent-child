@@ -1,37 +1,40 @@
 import { Component } from '@angular/core';
 
+import { ErrorEvent, SearchCriteriaEvent, DetailsSummaryEvent, SearchStatusEvent } from './events';
+import { SearchCriteria, SearchStatus, DetailsSummary } from './models';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  searchCriteria: any;
-  detailsSummary: any;
+  searchCriteria: SearchCriteria;
+  detailsSummary: DetailsSummary;
   errorList: string[];
-  searchStatus: any = {
+  searchStatus: SearchStatus = {
     isSearching: false
   };
 
-  onSearchClickEvent(data: any) {
-    console.log('AppComponent: Received searchClick event: ', data);
+  onSearchClickEvent(data: SearchCriteriaEvent) {
+    console.log('AppComponent: Received SearchCriteriaEvent: ', data);
     this.errorList = undefined;
-    this.searchCriteria = data;
+    this.searchCriteria = data.searchCriteria;
     this.detailsSummary = undefined;
   }
 
-  onErrorEvent(data: any) {
-    console.log('AppComponent: Received error event: ', data);
-    this.errorList = data;
+  onErrorEvent(data: ErrorEvent) {
+    console.log('AppComponent: Received ErrorEvent: ', data);
+    this.errorList = data.errorList;
   }
 
-  onDetailsClickEvent(data: any) {
-    console.log('AppComponent: Received detailsClick event: ', data);
-    this.detailsSummary = data;
+  onDetailsClickEvent(data: DetailsSummaryEvent) {
+    console.log('AppComponent: Received DetailsSummaryEvent: ', data);
+    this.detailsSummary = data.detailsSummary;
   }
 
-  onSearchStatusEvent(data: any) {
-    console.log('AppComponent: Received searchStatus event: ', data);
-    this.searchStatus = data;
+  onSearchStatusEvent(data: SearchStatusEvent) {
+    console.log('AppComponent: Received SearchStatusEvent: ', data);
+    this.searchStatus = data.searchStatus;
   }
 }

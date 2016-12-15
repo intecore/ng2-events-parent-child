@@ -3,13 +3,17 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { SearchCriteria, DetailsSummary } from './models';
+
 @Injectable()
 export class CustomerService {
 
   constructor(private http: Http) {
   }
 
-  searchCustomers(someSearchValue: any): Observable<any[]> {
+  searchCustomers(searchCriteria: SearchCriteria): Observable<DetailsSummary[]> {
+    console.log('CustomerService: Received search criteria ', searchCriteria);
+
     return this.http.get('api/customers')
       .map((response) => {
         let retList = response.json().data.map(element => {
