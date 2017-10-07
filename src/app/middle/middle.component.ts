@@ -10,7 +10,7 @@ import { SearchCriteria, SearchStatus, DetailsSummary } from '../models';
   styleUrls: ['./middle.component.css']
 })
 export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
-  isLoading: boolean = false;
+  isLoading = false;
   searchResults: DetailsSummary[];
   @Input()
   searchCriteria: SearchCriteria;
@@ -43,7 +43,7 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   searchCustomers(searchCriteria: SearchCriteria) {
-    let searchStatusEvent = new SearchStatusEvent(new SearchStatus(true));
+    const searchStatusEvent = new SearchStatusEvent(new SearchStatus(true));
     console.log('MiddleComponent: Emitting: ', searchStatusEvent);
     this.isLoading = true;
     this.searchStatus.emit(searchStatusEvent);
@@ -68,7 +68,7 @@ export class MiddleComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onClickDetails(detailSummary: DetailsSummary) {
-    let detailsSummaryEvent = new DetailsSummaryEvent(detailSummary);
+    const detailsSummaryEvent = new DetailsSummaryEvent(detailSummary);
     console.log('MiddleComponent: Emitting: ', detailsSummaryEvent);
     this.detailsClick.emit(detailsSummaryEvent);
   }

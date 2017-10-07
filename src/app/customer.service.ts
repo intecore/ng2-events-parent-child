@@ -16,7 +16,7 @@ export class CustomerService {
 
     return this.http.get('api/customers')
       .map((response) => {
-        let retList = response.json().data.map(element => {
+        const retList = response.json().data.map(element => {
           return {
             id: element.id,
             firstName: element.firstName
