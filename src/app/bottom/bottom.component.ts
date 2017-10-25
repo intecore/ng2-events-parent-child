@@ -9,7 +9,7 @@ import { DetailsSummary } from '../models';
   styleUrls: ['./bottom.component.css']
 })
 export class BottomComponent implements OnInit, OnDestroy, OnChanges {
-  isLoading: boolean = false;
+  isLoading = false;
   fullDetail: any;
   @Input()
   detailsSummary: DetailsSummary;
@@ -26,7 +26,7 @@ export class BottomComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: any) {
     console.log('BottomComponent: Detected changes: ', changes);
-    let id = changes.detailsSummary.currentValue ? changes.detailsSummary.currentValue.id : '';
+    const id = changes.detailsSummary.currentValue ? changes.detailsSummary.currentValue.id : '';
 
     if (id) {
         this.getDetails(id);

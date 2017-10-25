@@ -25,7 +25,7 @@ export class TopComponent implements OnInit {
 
   submitSearch(searchString: string) {
     if (searchString.trim().length === 0) {
-      let errorList = [
+      const errorList = [
         'You must specify something to search for',
         'Please fill out all required fields'
       ];
@@ -33,7 +33,7 @@ export class TopComponent implements OnInit {
       this.error.emit(new ErrorEvent(errorList));
     }
     else {
-      let searchCriteriaEvent = new SearchCriteriaEvent(new SearchCriteria(searchString));
+      const searchCriteriaEvent = new SearchCriteriaEvent(new SearchCriteria(searchString));
       console.log('TopComponent: Emitting: ', searchCriteriaEvent);
       this.searchClick.emit(searchCriteriaEvent);
     }
